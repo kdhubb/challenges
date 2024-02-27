@@ -62,5 +62,19 @@ class StringValidator
   #   end
   # end
 
-  
+  def validate(string)
+    in_out = []
+    arr = string.split("")
+    arr.each do |char|
+      in_out << char
+      if char == "]" && in_out[-2] == "["
+        in_out.pop(2)
+      elsif char == ")" && in_out[-2] == "("
+        in_out.pop(2)
+      elsif char == "}" && in_out[-2] == "{"
+        in_out.pop(2)
+      end
+    end
+    in_out.empty?
+  end
 end
